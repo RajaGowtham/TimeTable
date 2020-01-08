@@ -1,4 +1,3 @@
-
 // Teacher Class
 
 class Teacher {
@@ -43,7 +42,7 @@ class School {
     }
   }
 
-// Add ClassRooms
+// Add ClassRoom
 
   addClassRoom(name: string) {
     for (let i = 0; i < this.workingDays; i++) {
@@ -92,23 +91,28 @@ sample.addClassRoom("V");
 sample.addClassRoom("VI");
 sample.addClassRoom("VII");
 sample.addClassRoom("VIII");
+sample.addClassRoom("IX");
+sample.addClassRoom("x");
 
 sample.start();
 
 //divide classRoom day
 
 function daydiv(t) {
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < sample.workingDays; i++) {
     var rowfound = t.filter(teachers => teachers.day == i + 1);
-    z.push(rowfound);
+      for(let j=0;j<8;j++){
+        t.shift();
+      }
+    t.push(rowfound);
   }
-  y.push(z);
+  y.push(t);
 } 
 
 // divide classRooms
 
 function clsdiv(data) {
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < a.length; i++) {
     var clsfound = data.filter(teachers1 => teachers1.name == a[i].name);
     daydiv(clsfound);
   }
@@ -120,7 +124,7 @@ clsdiv(sample.classRooms);
 
 const createColumn = (data) => {
   const td = document.createElement('td')
-  const text = document.createTextNode(data.teacher.hour);
+  const text = document.createTextNode(data.name);
   td.appendChild(text)
   return td;
 }
@@ -136,7 +140,7 @@ const createRow = (data) => {
   return tr;
 }
 
-// create table <table>
+// create table class<table>
 
 function createTable(data){
   const table = document.createElement('table');
@@ -148,10 +152,17 @@ function createTable(data){
   return table;
 }
 
-for(let l of y){
-  console.log(l);
-  const table2 = createTable(l);
-  document.getElementById('app').appendChild(table2);
+//create table school
+
+function schooltable(data){
+  const table=document.createElement('table');
+  table.setAttribute('boder','2');
+  for(let l of data){
+    const table2 = createTable(l);
+    table.appendChild(table2);
+  }
+  return table
 }
 
-// Refer sampleData
+  var table2=schooltable(y);
+  document.getElementById('app').appendChild(table2);
