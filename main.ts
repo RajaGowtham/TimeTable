@@ -1,3 +1,29 @@
+import "./style.css";
+let teachersData = [
+  { id: "001", subjects: ["tamil", "english"], name: "sfyds" },
+  { id: "002", subjects: ["english", "math"] },
+  { id: "003", subjects: ["scie", "soci"] },
+  { id: "004", subjects: ["tamil", "soci"] },
+  { id: "005", subjects: ["english", "soci"] },
+  { id: "006", subjects: ["tamil", "soci"] },
+  { id: "007", subjects: ["english", "socil"] },
+  { id: "008", subjects: ["english", "soci"] }
+];
+
+let a = [
+  { name: "I" },
+  { name: "II" },
+  { name: "III" },
+  { name: "IV" },
+  { name: "V" },
+  { name: "VI" },
+  { name: "VII" },
+  { name: "VIII" },
+];
+
+let y = [];
+let z = [];
+
 // Teacher Class
 
 class Teacher {
@@ -42,7 +68,7 @@ class School {
     }
   }
 
-// Add ClassRoom
+// Add ClassRooms
 
   addClassRoom(name: string) {
     for (let i = 0; i < this.workingDays; i++) {
@@ -62,19 +88,17 @@ class School {
 // Assign Teacher to Class
 
   assign(x) {
-    const teacfound = this.teachers.filter(
-      teacher => teacher.day == x.day && teacher.hour == x.hour
-    );
+    const teacfound = this.teachers.filter(teacher => teacher.day == x.day && teacher.hour ==x.hour);
 
     for (let j = 0; j < 1; j++) {
       x.teacher = teacfound[j];
     }
+    // console.log(x);
   }
 
   start() {
-    this.Shuffle();
-
     for (let x of this.classRooms) {
+      this.Shuffle();
       let s = this.assign(x);
     }
   }
@@ -91,8 +115,8 @@ sample.addClassRoom("V");
 sample.addClassRoom("VI");
 sample.addClassRoom("VII");
 sample.addClassRoom("VIII");
-sample.addClassRoom("IX");
-sample.addClassRoom("x");
+// sample.addClassRoom("IX");
+// sample.addClassRoom("x");
 
 sample.start();
 
@@ -124,7 +148,7 @@ clsdiv(sample.classRooms);
 
 const createColumn = (data) => {
   const td = document.createElement('td')
-  const text = document.createTextNode(data.name);
+  const text = document.createTextNode(data.teacher.id);
   td.appendChild(text)
   return td;
 }
@@ -140,7 +164,7 @@ const createRow = (data) => {
   return tr;
 }
 
-// create table class<table>
+// create table <table>
 
 function createTable(data){
   const table = document.createElement('table');
@@ -152,17 +176,14 @@ function createTable(data){
   return table;
 }
 
-//create table school
-
 function schooltable(data){
   const table=document.createElement('table');
   table.setAttribute('boder','2');
-  for(let l of data){
-    const table2 = createTable(l);
+  for(let i of y){
+    const table2 = createTable(i);
     table.appendChild(table2);
   }
-  return table
+  return table;
 }
-
-  var table2=schooltable(y);
-  document.getElementById('app').appendChild(table2);
+    var table2=schooltable(y);
+    document.getElementById('app').appendChild(table2);
